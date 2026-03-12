@@ -1,107 +1,59 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Babel Camp</title>
-
 <link rel="stylesheet" href="index.css">
-  <style>
+<style>
+/* قسم الجاليري */
+.gallery-container {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin: 20px 0;
+}
+.gallery {
+  display:flex;
+  gap:5px;
+}
+.gallery-img {
+  width:200px;
+  height:150px;
+  object-fit:cover;
+  display:none;
+}
+.gallery-img.active {
+  display:block;
+}
+.arrow {
+  background:#333;
+  color:white;
+  border:none;
+  font-size:1.5rem;
+  padding:5px 10px;
+  cursor:pointer;
+  border-radius:5px;
+}
+.arrow:hover {background:#f555;}
 
-    .gallery-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .image-container {
-      width: 600px;
-      height: 400px;
-      overflow: hidden;
-    }
-
-    .gallery-img {
-      display: none;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .gallery-img.active {
-      display: block;
-    }
-
-    .arrow {
-      background: #333;
-      color: white;
-      border: none;
-      font-size: 2rem;
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-
-    .arrow:hover {
-      background: #f555;
-    }
-  </style>
-
+/* زر الحجز في المنتصف */
+#bookBtn {
+  display:block;
+  margin: 20px auto;
+  padding:12px 20px;
+  font-size:16px;
+  background-color:#007bff;
+  color:white;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+}
+</style>
 </head>
 
 <body>
-
-<script>
-
-  // تأكد إن الصفحة تحملت كاملة
-  document.addEventListener('DOMContentLoaded', function() {
-    
-    // اختيار العناصر
-    const images = document.querySelectorAll('.gallery-img');
-    const prevBtn = document.querySelector('.prev');
-    const nextBtn = document.querySelector('.next');
-    
-    // تأكد إن العناصر موجودة
-    if (!images.length || !prevBtn || !nextBtn) {
-      console.log('العناصر مش موجودة');
-      return;
-    }
-    
-    let currentIndex = 0;
-    
-    // وظيفة إظهار الصورة
-    function showImage(index) {
-      // أخفي كل الصور
-      images.forEach(img => {
-        img.classList.remove('active');
-      });
-      
-      // ظهر الصورة المطلوبة
-      images[index].classList.add('active');
-    }
-    
-    // حدث الزر السابق
-    prevBtn.addEventListener('click', function() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      showImage(currentIndex);
-    });
-    
-    // حدث الزر التالي
-    nextBtn.addEventListener('click', function() {
-      currentIndex = (currentIndex + 1) % images.length;
-      showImage(currentIndex);
-    });
-    
-  });
-
-
-
-  
-</script>
-    
-
-<link rel="stylesheet" href="index.js">
 
 <header>
 <h1 style="text-align:center;">Babel Camp</h1>
@@ -118,29 +70,19 @@
 <section class="hero">
 <h2>Your adventure starts here</h2>
 </section>
-<div style="text-align:center;">
-<section class="container" id="about">
+
+<section class="container" id="about" style="text-align:center;">
 <h2>About the camp</h2>
-</p>
-  <p style="color:rgb(255, 255, 255);">
-   
+</section>
+<div dir="ltr"><p style="color:white;">
 Welcome to our camp, where adventure meets comfort in the heart of nature. Our camp is designed for travelers who seek unforgettable experiences, breathtaking landscapes, and peaceful moments away from the noise of the city.
 Here, you can enjoy stunning views, fresh air, and a warm atmosphere that makes you feel at home. Whether you're looking for relaxation, outdoor activities, or exploring the beauty of the surroundings, our camp offers the perfect escape.
 We provide comfortable accommodations, friendly hospitality, and authentic experiences that allow you to connect with nature and create lasting memories.
 </p>
-
-
-
-</p>
 </div>
-</section>
 
-<section class="container" id="activities">
-
+<section class="container" id="activities" style="text-align:center;">
 <h2>Activities</h2>
-
-
-
 <section class="container" id="activities">
 
 
@@ -228,47 +170,27 @@ arrow.addEventListener("mouseleave", startSlide);
 
 </section>
 
-<section class="container" id="booking">
 
 
-<div style="text-align:center; margin:20px;">
-  <button onclick="window.location.href='booking.html'" 
-          style="padding:12px 20px; font-size:16px; background-color:#007bff; color:white; border:none; border-radius:5px; cursor:pointer;">
-    Book Now
-  </button>
-</div>
-
-<p id="message"></p>
-
+<section class="container" id="booking" style="text-align:center;">
+<button id="bookBtn" onclick="window.location.href='booking.html'">Book Now</button>
 </section>
 
-<footer>
-
-    <a href="https://www.facebook.com/profile.php?id=61586914651667" target="_blank">
-<img src="Fa.png" alt="facebook" width="25px" height="20px">
-</a>
+<footer style="text-align:center;">
+<a href="https://www.facebook.com/profile.php?id=61586914651667" target="_blank">
+<img src="Fa.png" alt="facebook" width="25px" height="20px"></a>
 
 <a href="https://wa.me/201288452212" target="_blank">
-<img src="W.png" alt=" Wahtsapp" width="25px" height="20px">
-</a>
+<img src="W.png" alt="Whatsapp" width="25px" height="20px"></a>
 
-<!-- Instagram Link -->
-<a href="https://www.instagram.com/bubblecamp3?utm_source=qr&igsh=b2F6YTZ6ZzM4dWFj" target="_blank" style="text-decoration: none;">
-  <img src="ins.png" 
-       alt="Instagram" 
-       style="width:25px; height:20px;">
-</a>
+<a href="https://www.instagram.com/bubblecamp3?utm_source=qr&igsh=b2F6YTZ6ZzM4dWFj" target="_blank">
+<img src="ins.png" alt="Instagram" width="25px" height="20px"></a>
 
 <a href="babalcamp@gmail.com">
-<img src="M.png" alt=" Emil" width="25px" height="20px">
-</a>
-
-
+<img src="M.png" alt="Email" width="25px" height="20px"></a>
 
 <p>© 2026 Babel Camp</p>
 </footer>
-
-<script src="script.js"></script>
 
 </body>
 </html>
