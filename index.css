@@ -1,11 +1,14 @@
 *{
-    font-family: Arial;
-    margin: 0;
+font-family: Arial;
+margin:0;
 }
+
 body{
 background:#2c3e50;
-direction:rtl
+direction:rtl;
 }
+
+/* header */
 
 header{
 background:#2c3e50;
@@ -13,6 +16,8 @@ color:white;
 text-align:center;
 padding:20px;
 }
+
+/* navbar */
 
 nav{
 background:#223c57;
@@ -27,6 +32,8 @@ margin:10px;
 font-size:18px;
 }
 
+/* hero */
+
 .hero{
 background:url("1.1.jpg") center/cover;
 height:600px;
@@ -37,11 +44,15 @@ color:white;
 font-size:35px;
 }
 
+/* container */
+
 .container{
 max-width:1100px;
 margin:auto;
 padding:40px;
 }
+
+/* cards */
 
 .cards{
 display:flex;
@@ -50,27 +61,35 @@ flex-wrap:wrap;
 }
 
 .card{
+min-width:calc(33.333% - 17px);
 background:white;
-border-radius:10px;
-box-shadow:0 0 10px rgba(190, 5, 5, 0.1);
-flex:1 1 300px;
+border-radius:20px;
 overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+flex-shrink:0;
 }
 
 .card img{
 width:100%;
-height:200px;
+height:250px;
 object-fit:cover;
 }
 
 .card h3{
-padding:10px;
+font-size:1.5rem;
+margin:15px 0 5px;
+text-align:center;
+color:#333;
 }
 
 .card p{
-padding:10px;
-color:#555;
+font-size:1rem;
+color:#666;
+padding:0 15px 20px;
+text-align:center;
 }
+
+/* buttons */
 
 button{
 background:#3971bb;
@@ -86,193 +105,52 @@ button:hover{
 background:#1e8449;
 }
 
-footer{
-background:#23405e;
+/* carousel */
+
+.carousel-container{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;
+padding:40px 20px;
+direction:rtl;
+}
+
+.carousel-track-wrapper{
+width:100%;
+max-width:1200px;
+overflow:hidden;
+}
+
+.carousel-track{
+display:flex;
+gap:25px;
+transition:transform 0.5s ease;
+}
+
+/* arrows */
+
+.arrow{
+background:#2c3e50;
 color:white;
-text-align:center;
-padding: 25px;
-}
-.gallery-img {
-  display: none; 
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-img.active {
-  display: block;
-}
-.carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 40px 20px;
-  direction: rtl;
-  background: #f8f9fa;
+border:none;
+font-size:2rem;
+width:50px;
+height:50px;
+border-radius:50%;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.3s;
 }
 
-.carousel-track-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  overflow: hidden;
+.arrow:hover{
+background:#34495e;
+transform:scale(1.1);
 }
 
-.carousel-track {
-  display: flex;
-  gap: 25px;
-  transition: transform 0.5s ease;
-}
-
-.card {
-  min-width: calc(33.333% - 17px); /* 3 صور في الصف */
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  text-align: center;
-  flex-shrink: 0;
-}
-
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin: 15px 0 5px;
-  color: #333;
-}
-
-.card p {
-  font-size: 1rem;
-  color: #666;
-  padding: 0 15px 20px;
-}
-
-.arrow {
-  background: #764ba2;
-  color: white;
-  border: none;
-  font-size: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.arrow:hover {
-  background: #5a3780;
-  transform: scale(1.1);
-}
-.carousel-track {
-  display: flex;
-  gap: 25px;
-  transition: transform 0.5s ease;
-}
-
-.card {
-  min-width: calc(33.333% - 17px);
-  flex-shrink: 0;
-}
-
-@media (max-width: 900px) {
-  .card {
-    min-width: calc(50% - 8px);
-  }
-  .carousel-track {
-    gap: 15px;
-  }
-}
-
-@media (max-width: 600px) {
-  .card {
-    min-width: 100%;
-  }
-  .carousel-track {
-    gap: 10px;
-  }
-}
-.carousel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 40px 20px;
-  direction: rtl;
-}
-
-.carousel-track-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  overflow: hidden;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 25px;
-  transition: transform 0.5s ease;
-}
-
-.card {
-  min-width: calc(33.333% - 17px);
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  flex-shrink: 0;
-}
-
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin: 15px 0 5px;
-  text-align: center;
-  color: #333;
-}
-
-.card p {
-  font-size: 1rem;
-  color: #666;
-  padding: 0 15px 20px;
-  text-align: center;
-}
-
-.arrow {
-  background: #2c3e50;
-  color: white;
-  border: none;
-  font-size: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
-}
-
-.arrow:hover {
-  background: #34495e;
-  transform: scale(1.1);
-}
-
-
-
-
-
+/* gallery */
 
 .gallery-container{
 display:flex;
@@ -291,13 +169,13 @@ gap:15px;
 .gallery img{
 border-radius:12px;
 object-fit:cover;
-transition:all 1s ease; /* الحركة البطيئة */
+transition:all 1s ease;
 }
-/* الصور الجانبية */
+
 .side{
 width:180px;
 height:120px;
-opacity:0.7;
+opacity:0.6;
 }
 
 .center{
@@ -305,27 +183,192 @@ width:320px;
 height:210px;
 transform:scale(1.15);
 box-shadow:0 15px 35px rgba(0,0,0,0.4);
-transition:all 1s ease;
 }
 
-/* الأسهم */
-.arrow{
-background:#2c3e50;
+/* booking button */
+
+#bookBtn{
+display:block;
+margin:20px auto;
+padding:12px 20px;
+font-size:16px;
+background-color:#0041b9;
 color:white;
 border:none;
-font-size:30px;
-padding:10px 15px;
+border-radius:5px;
 cursor:pointer;
-border-radius:10px;
 }
 
-.arrow:hover{
-background:#3498db;
+/* footer */
+
+footer{
+background:#23405e;
+color:white;
+text-align:center;
+padding:25px 0;
+width:100%;
+margin:0;
 }
 
-.side{
-width:180px;
-height:120px;
-opacity:0.6;
-transition:all 1s ease;
+footer img{
+margin:0 10px;
+transition:0.3s;
+}
+
+footer img:hover{
+transform:scale(1.2);
+}
+
+footer p{
+margin-top:10px;
+}
+
+/* responsive */
+
+@media (max-width:900px){
+
+.card{
+min-width:calc(50% - 8px);
+}
+
+.carousel-track{
+gap:15px;
+}
+
+}
+
+@media (max-width:600px){
+
+.card{
+min-width:100%;
+}
+
+.carousel-track{
+gap:10px;
+}
+
+}
+
+
+
+
+nav{
+background:#223c57;
+text-align:center;
+padding:10px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+
+
+
+
+
+
+.reveal{
+opacity:0;
+transform:translateY(50px);
+transition:all 0.8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+
+
+
+
+.slider{
+position:relative;
+max-width:900px;
+margin:auto;
+overflow:hidden;
+border-radius:15px;
+}
+
+.slides{
+display:flex;
+transition:0.5s;
+}
+
+.slides img{
+width:100%;
+height:400px;
+object-fit:cover;
+}
+
+.slider-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.5);
+color:white;
+border:none;
+font-size:25px;
+padding:10px;
+cursor:pointer;
+}
+
+.prev{
+left:10px;
+}
+
+.next{
+right:10px;
+}
+
+
+
+
+/* للأجهزة المتوسطة (تابلت) */
+@media (max-width: 900px) {
+  .hero {
+    font-size:28px;
+    height:400px;
+  }
+  
+  .card {
+    flex: 1 1 45%; /* كل صف فيه 2 كارد بدل 3 */
+    max-width: none;
+  }
+
+  nav a {
+    font-size:16px;
+  }
+}
+
+/* للأجهزة الصغيرة (موبايل) */
+@media (max-width: 600px) {
+  .hero {
+    font-size:22px;
+    height:300px;
+  }
+
+  nav a {
+    display:block;
+    margin:10px 0;
+  }
+
+  .card {
+    flex: 1 1 100%; /* كل كارد في صف لوحده */
+  }
+
+  .gallery-container {
+    flex-direction: column;
+    gap:10px;
+  }
+
+  .gallery img {
+    width:100%;
+    height:auto;
+  }
+
+  #bookBtn {
+    width:80%;
+    font-size:14px;
+  }
 }
