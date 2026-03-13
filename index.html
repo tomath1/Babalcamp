@@ -5,52 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Babel Camp</title>
 <link rel="stylesheet" href="index.css">
-<style>
-/* قسم الجاليري */
-.gallery-container {
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  margin: 20px 0;
-}
-.gallery {
-  display:flex;
-  gap:5px;
-}
-.gallery-img {
-  width:200px;
-  height:150px;
-  object-fit:cover;
-  display:none;
-}
-.gallery-img.active {
-  display:block;
-}
-.arrow {
-  background:#333;
-  color:white;
-  border:none;
-  font-size:1.5rem;
-  padding:5px 10px;
-  cursor:pointer;
-  border-radius:5px;
-}
-.arrow:hover {background:#f555;}
 
-/* زر الحجز في المنتصف */
-#bookBtn {
-  display:block;
-  margin: 20px auto;
-  padding:12px 20px;
-  font-size:16px;
-  background-color:#007bff;
-  color:white;
-  border:none;
-  border-radius:5px;
-  cursor:pointer;
-}
-</style>
+
 </head>
 
 <body>
@@ -103,69 +59,19 @@ We provide comfortable accommodations, friendly hospitality, and authentic exper
 
 
 
+
+
+
+
 </div>
 
 <script>
 
-const images = [
-"1.jpeg",
-"3.jpeg",
-"4.jpeg",
-"5.jpeg",
-"6.jpeg"
-];
-
-let currentIndex = 0;
-let autoSlide;
-
-function showImages(){
-
-document.getElementById("img1").src = images[currentIndex % images.length];
-document.getElementById("img2").src = images[(currentIndex+1) % images.length];
-document.getElementById("img3").src = images[(currentIndex+2) % images.length];
-
-}
-
-function nextImage(){
-currentIndex = (currentIndex+1) % images.length;
-showImages();
-}
-
-function prevImage(){
-currentIndex--;
-if(currentIndex < 0){
-currentIndex = images.length-1;
-}
-showImages();
-}
-
-/* تشغيل التقليب التلقائي */
-function startSlide(){
-autoSlide = setInterval(nextImage,4000);
-}
-
-/* إيقاف التقليب */
-function stopSlide(){
-clearInterval(autoSlide);
-}
-
-showImages();
-startSlide();
-
-/* إيقاف عند وضع الماوس على السهم */
-document.querySelectorAll(".arrow").forEach(arrow => {
-
-arrow.addEventListener("mouseenter", stopSlide);
-
-arrow.addEventListener("mouseleave", startSlide);
-
-});
 
 </script>
 
-<link rel="stylesheet" href="index.js">
 
-
+<script src="index.js"></script>
   
 
 </section>
@@ -188,6 +94,9 @@ arrow.addEventListener("mouseleave", startSlide);
 
 <a href="babalcamp@gmail.com">
 <img src="M.png" alt="Email" width="25px" height="20px"></a>
+
+
+
 
 <p>© 2026 Babel Camp</p>
 </footer>
