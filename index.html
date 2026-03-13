@@ -1,105 +1,67 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Babel Camp</title>
 <link rel="stylesheet" href="index.css">
-
-
 </head>
 
 <body>
 
 <header>
-<h1 style="text-align:center;">Babel Camp</h1>
-<p style="text-align:center;">A unique tourist camping experience</p>
+  <h1>Babel Camp</h1>
+  <p>A unique tourist camping experience</p>
 </header>
 
 <nav>
-<a href="#">Home</a>
-<a href="#about">About the camp</a>
-<a href="#activities">Activities</a>
-<a href="#booking">Reservation</a>
+  <a href="#">Home</a>
+  <a href="#about">About the camp</a>
+  <a href="#activities">Activities</a>
+  <a href="#booking">Reservation</a>
 </nav>
 
 <section class="hero">
-<h2>Your adventure starts here</h2>
+  <h2>Your adventure starts here</h2>
 </section>
 
-<section class="container" id="about" style="text-align:center;">
-<h2>About the camp</h2>
+<section class="container" id="about">
+  <h2>About the camp</h2>
+  <p>
+    Welcome to our camp, where adventure meets comfort in the heart of nature.
+    Our camp is designed for travelers who seek unforgettable experiences,
+    breathtaking landscapes, and peaceful moments away from the noise of the city.
+    Enjoy stunning views, fresh air, and a warm atmosphere that makes you feel at home.
+  </p>
 </section>
-<div dir="ltr"><p style="color:white;">
-Welcome to our camp, where adventure meets comfort in the heart of nature. Our camp is designed for travelers who seek unforgettable experiences, breathtaking landscapes, and peaceful moments away from the noise of the city.
-Here, you can enjoy stunning views, fresh air, and a warm atmosphere that makes you feel at home. Whether you're looking for relaxation, outdoor activities, or exploring the beauty of the surroundings, our camp offers the perfect escape.
-We provide comfortable accommodations, friendly hospitality, and authentic experiences that allow you to connect with nature and create lasting memories.
-</p>
-</div>
 
-<section class="container" id="activities" style="text-align:center;">
-<h2>Activities</h2>
 <section class="container" id="activities">
-
-
-
-<div class="gallery-container">
-
-<button class="arrow left" onclick="prevImage()">❮</button>
-
-<div class="gallery">
-<img id="img1" class="side">
-<img id="img2" class="center">
-<img id="img3" class="side">
-</div>
-
-<button class="arrow right" onclick="nextImage()">❯</button>
-
-</div>
-
-
-
-
-
-
-
-</div>
-
-<script>
-
-
-</script>
-
-
-<script src="index.js"></script>
-  
-
+  <h2>Activities</h2>
+  <div class="gallery-container">
+    <button class="arrow left" onclick="prevImage()">❮</button>
+    <div class="gallery">
+      <img id="img1" class="side" src="1.jpeg" alt="Activity 1">
+      <img id="img2" class="center" src="3.jpeg" alt="Activity 2">
+      <img id="img3" class="side" src="4.jpeg" alt="Activity 3">
+    </div>
+    <button class="arrow right" onclick="nextImage()">❯</button>
+  </div>
 </section>
 
-
-
-<section class="container" id="booking" style="text-align:center;">
-<button id="bookBtn" onclick="window.location.href='booking.html'">Book Now</button>
+<section class="container" id="booking">
+  <button id="bookBtn" onclick="window.location.href='booking.html'">Book Now</button>
 </section>
 
-<footer style="text-align:center;">
-<a href="https://www.facebook.com/profile.php?id=61586914651667" target="_blank">
-<img src="Fa.png" alt="facebook" width="25px" height="20px"></a>
-
-<a href="https://wa.me/201288452212" target="_blank">
-<img src="W.png" alt="Whatsapp" width="25px" height="20px"></a>
-
-<a href="https://www.instagram.com/bubblecamp3?utm_source=qr&igsh=b2F6YTZ6ZzM4dWFj" target="_blank">
-<img src="ins.png" alt="Instagram" width="25px" height="20px"></a>
-
-<a href="babalcamp@gmail.com">
-<img src="M.png" alt="Email" width="25px" height="20px"></a>
-
-
-
-
-<p>© 2026 Babel Camp</p>
+<footer>
+  <div class="footer-links">
+    <a href="#"><img src="Fa.png" alt="facebook"></a>
+    <a href="#"><img src="W.png" alt="Whatsapp"></a>
+    <a href="#"><img src="ins.png" alt="Instagram"></a>
+    <a href="#"><img src="M.png" alt="Email"></a>
+  </div>
+  <p>© 2026 Babel Camp</p>
 </footer>
 
+<script src="index.js"></script>
 </body>
 </html>
