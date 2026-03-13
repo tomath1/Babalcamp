@@ -223,6 +223,41 @@ footer p{
 margin-top:10px;
 }
 
+
+
+
+
+
+/* Footer Social Icons */
+footer .footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* المسافة بين الأيقونات */
+  flex-wrap: wrap; /* لو الشاشة ضيقة تنتقل لصف ثاني */
+}
+
+footer .footer-links a img {
+  width: 30px;  /* حجم أيقونة ثابت */
+  height: auto; /* يحافظ على النسبة */
+  transition: transform 0.3s;
+}
+
+footer .footer-links a img:hover {
+  transform: scale(1.2); /* تكبير بسيط عند المرور */
+}
+
+/* Media Queries للأجهزة الصغيرة */
+@media (max-width: 600px) {
+  footer .footer-links a img {
+    width: 25px; /* أصغر على الموبايل */
+  }
+}
+
+
+
+
+
+
 /* responsive */
 
 @media (max-width:900px){
@@ -372,3 +407,92 @@ right:10px;
     font-size:14px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* body */
+body {
+  background: #2c3e50;
+  color: white;
+  direction: rtl;
+  font-family: Arial, sans-serif;
+}
+
+/* header */
+header {
+  background: #2c3e50;
+  text-align: center;
+  padding: 20px;
+}
+
+/* nav */
+nav {
+  background: #223c57;
+  text-align: center;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+}
+
+/* nav links */
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+  font-size: 18px;
+}
+
+/* hero */
+.hero {
+  background: url("1.1.jpg") center/cover no-repeat;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vw;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* containers, gallery, cards, buttons, footer ... الخ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Tablet */
+@media (max-width: 900px) { ... }
+
+/* Mobile */
+@media (max-width: 600px) { ... }
