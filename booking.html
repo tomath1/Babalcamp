@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking</title>
+<title>Babel Camp Booking</title>
+<link rel="icon" href="1.1.1.jpeg">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
 body {min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1); background-size:300% 300%; animation:gradientBG 10s ease infinite; padding:10px;}
@@ -38,19 +39,19 @@ label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-si
 
 <div class="booking-container">
     <div class="booking-header">
-        <h1>Booking</h1>
+        <h1>Babel Camp Booking</h1>
         <p>Book your trip now at the best rates</p>
     </div>
 
     <div class="booking-form">
         <form action="https://formspree.io/f/xqeybpog" method="POST" id="bookingForm">
             <div class="form-group">
-                <label><i class="fas fa-envelope" style="margin-left:5px;color:#3498db;"></i> Email:</label>
+                <label>Email:</label>
                 <input type="email" name="email" class="input-field" placeholder="Enter your email" required>
             </div>
 
             <div class="form-group">
-                <label><i class="fas fa-calendar-alt" style="margin-left:5px;color:#3498db;"></i> Departure Date:</label>
+                <label>Departure Date:</label>
                 <div class="date-group">
                     <select name="day" required></select>
                     <select name="month" required>
@@ -68,25 +69,61 @@ label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-si
             </div>
 
             <div class="form-group">
-                <label><i class="fas fa-phone-alt" style="margin-left:5px;color:#3498db;"></i> Phone Number:</label>
+                <label>Booking Type:</label>
+                <select name="booking_type" id="bookingType" class="input-field" required>
+                    <option value="">Select Type</option>
+                    <option value="individual">Individual</option>
+                    <option value="family">Family</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="individualBox" style="display:none;">
+                <label>Number of Persons:</label>
+                <input type="number" id="individualCount" name="individual_count" class="input-field" min="1" placeholder="Enter number">
+            </div>
+
+            <div id="familyBox" style="display:none;">
+                <div class="form-group">
+                    <label>Adults:</label>
+                    <input type="number" id="adultsCount" name="adults_count" class="input-field" min="1" placeholder="Number of adults">
+                </div>
+                <div class="form-group">
+                    <label>Children:</label>
+                    <input type="number" id="childrenCount" name="children_count" class="input-field" min="0" placeholder="Number of children">
+                </div>
+                <div id="childrenAgesContainer"></div>
+            </div>
+
+            <div class="form-group" id="daysBox" style="display:none;">
+                <label>Number of Days:</label>
+                <input type="number" id="daysCount" name="days_count" class="input-field" min="1" value="1">
+            </div>
+
+            <div class="form-group" id="priceBox" style="display:none;">
+                <label>Total Price:</label>
+                <input type="text" id="totalPrice" name="total_price" class="input-field" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number:</label>
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                     <select name="code" required style="width:35%; padding:12px; border-radius:12px; border:2px solid #ecf0f1;">
                         <option value="">Code</option>
-                        <option value="+20">🇪🇬 +20 Egypt</option>
-                        <option value="+966">🇸🇦 +966 Saudi</option>
-                        <option value="+971">🇦🇪 +971 UAE</option>
-                        <option value="+965">🇰🇼 +965 Kuwait</option>
-                        <option value="+974">🇶🇦 +974 Qatar</option>
-                        <option value="+1">🇺🇸 +1 USA</option>
-                        <option value="+44">🇬🇧 +44 UK</option>
-                        <option value="+49">🇩🇪 +49 Germany</option>
+                        <option value="+20">+20 Egypt</option>
+                        <option value="+966">+966 Saudi</option>
+                        <option value="+971">+971 UAE</option>
+                        <option value="+965">+965 Kuwait</option>
+                        <option value="+974">+974 Qatar</option>
+                        <option value="+1">+1 USA</option>
+                        <option value="+44">+44 UK</option>
+                        <option value="+49">+49 Germany</option>
                     </select>
                     <input type="tel" name="phone" class="input-field" placeholder="Enter your phone number" required maxlength="11" pattern="[0-9]{11}">
                 </div>
             </div>
 
             <button type="submit" class="btn-submit">
-                <i class="fas fa-paper-plane"></i> Send Booking
+                Send Booking
             </button>
         </form>
 
@@ -98,7 +135,6 @@ label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-si
 // الأيام حسب الشهر
 const daySelect = document.querySelector('select[name="day"]');
 const monthSelect = document.querySelector('select[name="month"]');
-
 function getDaysInMonth(month){
     switch(month){
         case 'February': return 28;
@@ -106,7 +142,6 @@ function getDaysInMonth(month){
         default: return 31;
     }
 }
-
 function updateDays(){
     const month = monthSelect.value;
     const days = getDaysInMonth(month);
@@ -123,57 +158,91 @@ function updateDays(){
 monthSelect.addEventListener('change', updateDays);
 updateDays();
 
-// إرسال الفورم والتحقق من رقم الهاتف
+// العناصر
+const bookingType = document.getElementById('bookingType');
+const individualBox = document.getElementById('individualBox');
+const familyBox = document.getElementById('familyBox');
+const priceBox = document.getElementById('priceBox');
+const daysBox = document.getElementById('daysBox');
+
+const individualCount = document.getElementById('individualCount');
+const adultsCount = document.getElementById('adultsCount');
+const childrenCount = document.getElementById('childrenCount');
+const daysCount = document.getElementById('daysCount');
+const totalPrice = document.getElementById('totalPrice');
+const childrenAgesContainer = document.getElementById('childrenAgesContainer');
+
+// الأسعار
+const priceIndividual = 1500;
+const priceAdult = 1200;
+const priceChild = 700;
+
+// إظهار الحقول حسب النوع
+bookingType.addEventListener('change', function(){
+    individualBox.style.display = 'none';
+    familyBox.style.display = 'none';
+    priceBox.style.display = 'none';
+    daysBox.style.display = 'none';
+    if(this.value==='individual'){ individualBox.style.display='block'; daysBox.style.display='block'; calculatePrice();}
+    else if(this.value==='family'){ familyBox.style.display='block'; daysBox.style.display='block'; calculatePrice();}
+});
+
+// أعمار الأطفال
+childrenCount.addEventListener('input', function(){
+    childrenAgesContainer.innerHTML='';
+    const count = parseInt(this.value)||0;
+    for(let i=1;i<=count;i++){
+        const div = document.createElement('div');
+        div.classList.add('form-group');
+        div.innerHTML = `<label>Age of child ${i}:</label>
+                         <input type="number" min="1" max="11" class="input-field childAge" name="child_${i}_age" placeholder="Enter age (max 11)">`;
+        childrenAgesContainer.appendChild(div);
+    }
+    calculatePrice();
+});
+
+// حساب السعر
+function calculatePrice(){
+    let total=0;
+    const days = parseInt(daysCount.value)||1;
+
+    if(bookingType.value==='individual'){
+        const count=parseInt(individualCount.value)||0;
+        total = count*priceIndividual*days;
+    } else if(bookingType.value==='family'){
+        const adults=parseInt(adultsCount.value)||0;
+        total += adults*priceAdult*days;
+
+        const childInputs=document.querySelectorAll('.childAge');
+        childInputs.forEach(input=>{
+            const age=parseInt(input.value)||0;
+            if(age<=11) total+=priceChild*days;
+            else total+=priceAdult*days;
+        });
+    }
+    if(total>0){ priceBox.style.display='block'; totalPrice.value=total+' EGP'; }
+    else priceBox.style.display='none';
+}
+
+// تحديث تلقائي
+[individualCount, adultsCount, childrenCount, daysCount].forEach(input=>input.addEventListener('input',calculatePrice));
+document.addEventListener('input',e=>{if(e.target.classList.contains('childAge')) calculatePrice();});
+calculatePrice();
+
+// إرسال الفورم
 const form = document.getElementById('bookingForm');
 const thankyouMsg = document.getElementById('thankyou-msg');
-
 form.addEventListener('submit', function(e){
     e.preventDefault();
-
-    const countryCode = form.querySelector('select[name="code"]').value;
-    const phone = form.querySelector('input[name="phone"]').value.trim();
-
-    if(phone.length !== 11){
-        alert('رقم الهاتف يجب أن يكون 11 رقم.');
-        return;
-    }
-
-    if(countryCode === '+20' && !phone.startsWith('0')){
-        alert('رقم الهاتف لا يتوافق مع كود الدولة مصر +20');
-        return;
-    }
-    if(countryCode === '+966' && !phone.startsWith('5')){
-        alert('رقم الهاتف لا يتوافق مع كود الدولة السعودية +966');
-        return;
-    }
-    if(countryCode === '+971' && !phone.startsWith('5')){
-        alert('رقم الهاتف لا يتوافق مع كود الدولة الإمارات +971');
-        return;
-    }
-    if(countryCode === '+1' && !phone.startsWith('1')){
-        alert('رقم الهاتف لا يتوافق مع كود الدولة أمريكا +1');
-        return;
-    }
-    if(countryCode === '+44' && !phone.startsWith('7')){
-        alert('رقم الهاتف لا يتوافق مع كود الدولة بريطانيا +44');
-        return;
-    }
-    if(countryCode === '+49' && !phone.startsWith('1')){
-        alert('رقم الهاتف لا يتوافق مع كود الدولة ألمانيا +49');
-        return;
-    }
-    // أضف قواعد إضافية حسب الحاجة
-
-    // إرسال البيانات
     const formData = new FormData(form);
-    fetch(form.action, {method: form.method, body: formData, headers:{'Accept':'application/json'}})
+    fetch(form.action,{method:form.method,body:formData,headers:{'Accept':'application/json'}})
     .then(response=>{
         if(response.ok){
             thankyouMsg.style.display='block';
-            setTimeout(()=>{window.location.href='index.html';}, 2000);
+            setTimeout(()=>{window.location.href='index.html';},2000);
             form.reset();
-        } else { alert('Problem submitting booking. Try again.'); }
-    }).catch(()=>{ alert('Problem submitting booking. Try again.'); });
+        } else {alert('Problem submitting booking. Try again.');}
+    }).catch(()=>{alert('Problem submitting booking. Try again.');});
 });
 </script>
 
