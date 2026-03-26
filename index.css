@@ -1,4 +1,4 @@
-/* Reset basic styles */
+/* ================= Reset ================= */
 * {
   margin: 0;
   padding: 0;
@@ -9,21 +9,24 @@
 body {
   background: #2c3e50;
   color: white;
-  direction: ltr; /* الكلام يبدأ من الشمال */
+  direction: ltr;
+  overflow-x: hidden;
 }
 
-/* Header */
+/* ================= Header ================= */
 header {
-  background: #2c3e50;
   text-align: center;
   padding: 20px;
 }
 
-/* Navbar */
+/* ================= Navbar ================= */
 nav {
   background: #223c57;
-  text-align: center;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -32,141 +35,98 @@ nav {
 nav a {
   color: white;
   text-decoration: none;
-  margin: 10px;
   font-size: 18px;
+  padding: 8px 12px;
+  transition: 0.3s;
 }
 
-/* Hero Section */
+nav a:hover {
+  background: #34495e;
+  border-radius: 5px;
+}
+
+/* ================= Hero ================= */
 .hero {
   background: url("1.1.jpg") center/cover no-repeat;
-  height: 50vh;
+  min-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5vw;
+  font-size: clamp(22px, 5vw, 50px);
   text-align: center;
-  padding: 0 20px;
+  padding: 20px;
 }
 
-/* Container Sections */
+/* ================= Container ================= */
 .container {
   max-width: 1100px;
   margin: auto;
   padding: 40px 20px;
 }
 
-/* العناوين في الوسط */
 .container h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* النصوص على الشمال مع هوامش */
 .container p {
   text-align: left;
   margin: 0 15px;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
-/* Cards */
-.cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.card {
-  flex: 1 1 30%;
-  max-width: 350px;
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  color: #333;
-  text-align: center;
-  margin: 10px auto;
-}
-
-.card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.card h3 {
-  font-size: 1.5rem;
-  margin: 15px 0 5px;
-}
-
-.card p {
-  font-size: 1rem;
-  color: #666;
-  padding: 0 15px 20px;
-}
-
-/* Buttons */
-button {
-  background: #3971bb;
-  border: none;
-  color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #1e8449;
-}
-
-/* Gallery */
+/* ================= Gallery ================= */
 .gallery-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   margin-top: 40px;
-  flex-wrap: wrap;
 }
 
+/* الصور */
 .gallery {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
+
+  /* المهم */
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
+/* كل الصور */
 .gallery img {
   border-radius: 12px;
   object-fit: cover;
-  transition: all 0.5s ease;
+  transition: 0.5s;
 }
 
+/* صور الجنب */
 .side {
-  width: 180px;
-  height: 120px;
+  width: 140px;
+  height: 90px;
   opacity: 0.6;
 }
 
+/* الصورة الأساسية */
 .center {
-  width: 320px;
-  height: 210px;
-  transform: scale(1.15);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  width: 260px;
+  height: 170px;
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* Carousel Arrows */
+/* الأسهم */
 .arrow {
   background: #2c3e50;
   color: white;
   border: none;
-  font-size: 2rem;
-  width: 50px;
-  height: 50px;
+  font-size: 1.8rem;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: 0.3s;
 }
 
@@ -175,26 +135,24 @@ button:hover {
   transform: scale(1.1);
 }
 
-/* Booking Button */
+/* ================= Button ================= */
 #bookBtn {
   display: block;
-  margin: 20px auto;
-  padding: 12px 20px;
+  margin: 25px auto;
+  padding: 12px 25px;
   font-size: 16px;
   background-color: #0041b9;
-  color: white;
+  border-radius: 6px;
   border: none;
-  border-radius: 5px;
+  color: white;
   cursor: pointer;
 }
 
-/* Footer */
+/* ================= Footer ================= */
 footer {
   background: #23405e;
-  color: white;
   text-align: center;
-  padding: 25px 0;
-  width: 100%;
+  padding: 25px 10px;
 }
 
 footer .footer-links {
@@ -202,76 +160,74 @@ footer .footer-links {
   justify-content: center;
   gap: 15px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
 }
 
-footer .footer-links a img {
+footer .footer-links img {
   width: 30px;
-  height: auto;
-  transition: transform 0.3s;
+  transition: 0.3s;
 }
 
-footer .footer-links a img:hover {
+footer .footer-links img:hover {
   transform: scale(1.2);
 }
 
-footer p {
-  margin-top: 10px;
-}
+/* ================= Responsive ================= */
 
-/* Responsive - Tablets */
+/* Tablet */
 @media (max-width: 900px) {
   .hero {
-    font-size: 28px;
-    height: 40vh;
+    min-height: 40vh;
   }
 
-  .card {
-    flex: 1 1 45%;
-    max-width: none;
+  .side {
+    width: 110px;
+    height: 70px;
   }
+
+  .center {
+    width: 200px;
+    height: 130px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
 
   nav a {
     font-size: 16px;
   }
 
-  .gallery img {
-    max-width: 45%;
-  }
-}
-
-/* Responsive - Mobile */
-@media (max-width: 600px) {
   .hero {
-    font-size: 22px;
-    height: 30vh;
-  }
-
-  nav a {
-    display: block;
-    margin: 10px 0;
-  }
-
-  .card {
-    flex: 1 1 100%;
+    min-height: 30vh;
+    font-size: 20px;
   }
 
   .gallery-container {
-    flex-direction: column;
-    gap: 10px;
+    gap: 5px;
   }
 
-  .gallery img {
-    width: 90%;
-    height: auto;
+  .side {
+    width: 90px;
+    height: 60px;
+  }
+
+  .center {
+    width: 160px;
+    height: 110px;
+  }
+
+  .arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1.3rem;
   }
 
   #bookBtn {
-    width: 80%;
+    width: 90%;
     font-size: 14px;
   }
 
-  footer .footer-links a img {
+  footer .footer-links img {
     width: 25px;
   }
 }
