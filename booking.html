@@ -3,37 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Babel Camp Booking</title>
+<title>Babel Camp Booking - Advanced</title>
 <link rel="icon" href="1.1.1.jpeg">
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
-body {min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1); background-size:300% 300%; animation:gradientBG 10s ease infinite; padding:10px;}
+body {min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(45deg,#ff6b6b,#4ecdc4,#45b7d1); background-size:300% 300%; animation:gradientBG 12s ease infinite; padding:10px;}
 @keyframes gradientBG {0% {background-position:0% 50%;}50% {background-position:100% 50%;}100% {background-position:0% 50%;}}
-.booking-container {background:rgba(255,255,255,0.98); border-radius:40px; box-shadow:0 30px 60px rgba(0,0,0,0.3); width:100%; max-width:480px; overflow:hidden; position:relative; z-index:10; animation:fadeInScale 0.6s ease;}
+
+.booking-container {background:rgba(255,255,255,0.98); border-radius:40px; box-shadow:0 30px 60px rgba(0,0,0,0.3); width:100%; max-width:520px; overflow:hidden; position:relative; z-index:10; animation:fadeInScale 0.6s ease;}
 @keyframes fadeInScale {from {opacity:0; transform:scale(0.9);} to {opacity:1; transform:scale(1);}}
+
 .booking-header {background:linear-gradient(135deg,#2c3e50,#3498db); color:white; padding:30px; text-align:center; position:relative;}
 .booking-header h1 {font-size:2rem; margin-bottom:5px; letter-spacing:1px;}
 .booking-header p {opacity:0.9; font-size:0.9rem;}
+
 .booking-form {padding:20px;}
 .form-group {margin-bottom:15px;}
 label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-size:0.9rem;}
 .input-field {width:100%; padding:12px 15px; border:2px solid #ecf0f1; border-radius:12px; font-size:0.95rem; background:#f8f9fa; transition:all 0.3s ease;}
 .input-field:focus {outline:none; border-color:#3498db; background:white; box-shadow:0 5px 15px rgba(52,152,219,0.2);}
 .input-field:hover {border-color:#2c3e50;}
+
 .date-group {display:flex; gap:8px; flex-wrap:wrap;}
 .date-group select {flex:1; padding:12px; border:2px solid #ecf0f1; border-radius:12px; background:#f8f9fa; cursor:pointer; font-size:0.95rem;}
 .date-group select:focus {outline:none; border-color:#3498db;}
+
 .btn-submit {width:100%; padding:14px; background:linear-gradient(135deg,#2c3e50,#3498db); color:white; border:none; border-radius:12px; font-size:1rem; font-weight:bold; cursor:pointer; transition:all 0.3s ease; margin-top:15px;}
 .btn-submit:hover {transform:translateY(-2px); box-shadow:0 10px 20px rgba(52,152,219,0.4);}
+
 #thankyou-msg {display:none; text-align:center; margin-top:20px; padding:15px; background:#2ecc71; color:white; border-radius:12px; font-weight:bold; font-size:0.95rem;}
-@media(max-width:480px){
+#priceSummary {display:none; margin-top:15px; padding:12px; border-radius:12px; background:#f1f2f6; font-weight:bold; color:#2c3e50;}
+
+@media(max-width:520px){
     .booking-header h1 {font-size:1.6rem;}
     .booking-header p {font-size:0.85rem;}
     .btn-submit {font-size:0.95rem; padding:12px;}
     .date-group {flex-direction:column;}
 }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -99,10 +106,7 @@ label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-si
                 <input type="number" id="daysCount" name="days_count" class="input-field" min="1" value="1">
             </div>
 
-            <div class="form-group" id="priceBox" style="display:none;">
-                <label>Total Price:</label>
-                <input type="text" id="totalPrice" name="total_price" class="input-field" readonly>
-            </div>
+            <div id="priceSummary"></div>
 
             <div class="form-group">
                 <label>Phone Number:</label>
@@ -122,9 +126,7 @@ label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-si
                 </div>
             </div>
 
-            <button type="submit" class="btn-submit">
-                Send Booking
-            </button>
+            <button type="submit" class="btn-submit">Send Booking</button>
         </form>
 
         <div id="thankyou-msg">Thank you! Your booking has been submitted.</div>
@@ -132,7 +134,7 @@ label {display:block; margin-bottom:5px; color:#2c3e50; font-weight:600; font-si
 </div>
 
 <script>
-// الأيام حسب الشهر
+// إعداد الأيام حسب الشهر
 const daySelect = document.querySelector('select[name="day"]');
 const monthSelect = document.querySelector('select[name="month"]');
 function getDaysInMonth(month){
@@ -158,31 +160,29 @@ function updateDays(){
 monthSelect.addEventListener('change', updateDays);
 updateDays();
 
-// العناصر
+// عناصر الحجز
 const bookingType = document.getElementById('bookingType');
 const individualBox = document.getElementById('individualBox');
 const familyBox = document.getElementById('familyBox');
-const priceBox = document.getElementById('priceBox');
 const daysBox = document.getElementById('daysBox');
-
 const individualCount = document.getElementById('individualCount');
 const adultsCount = document.getElementById('adultsCount');
 const childrenCount = document.getElementById('childrenCount');
 const daysCount = document.getElementById('daysCount');
-const totalPrice = document.getElementById('totalPrice');
+const priceSummary = document.getElementById('priceSummary');
 const childrenAgesContainer = document.getElementById('childrenAgesContainer');
 
-// الأسعار
+// أسعار
 const priceIndividual = 1500;
 const priceAdult = 1200;
 const priceChild = 700;
 
-// إظهار الحقول حسب النوع
+// تغيير الحقول حسب نوع الحجز
 bookingType.addEventListener('change', function(){
-    individualBox.style.display = 'none';
-    familyBox.style.display = 'none';
-    priceBox.style.display = 'none';
-    daysBox.style.display = 'none';
+    individualBox.style.display='none';
+    familyBox.style.display='none';
+    daysBox.style.display='none';
+    priceSummary.style.display='none';
     if(this.value==='individual'){ individualBox.style.display='block'; daysBox.style.display='block'; calculatePrice();}
     else if(this.value==='family'){ familyBox.style.display='block'; daysBox.style.display='block'; calculatePrice();}
 });
@@ -201,32 +201,35 @@ childrenCount.addEventListener('input', function(){
     calculatePrice();
 });
 
-// حساب السعر
+// حساب السعر + خصومات
 function calculatePrice(){
     let total=0;
     const days = parseInt(daysCount.value)||1;
-
     if(bookingType.value==='individual'){
         const count=parseInt(individualCount.value)||0;
         total = count*priceIndividual*days;
+        if(days>=3) total *= 0.9; // خصم 10% للرحلات >=3 أيام
     } else if(bookingType.value==='family'){
         const adults=parseInt(adultsCount.value)||0;
         total += adults*priceAdult*days;
-
         const childInputs=document.querySelectorAll('.childAge');
         childInputs.forEach(input=>{
             const age=parseInt(input.value)||0;
             if(age<=11) total+=priceChild*days;
             else total+=priceAdult*days;
         });
+        if(days>=3) total *=0.9; // خصم عائلي
     }
-    if(total>0){ priceBox.style.display='block'; totalPrice.value=total+' EGP'; }
-    else priceBox.style.display='none';
+
+    if(total>0){ 
+        priceSummary.style.display='block'; 
+        priceSummary.innerHTML = `Total Price: <strong>${total} EGP</strong>`; 
+    } else priceSummary.style.display='none';
 }
 
 // تحديث تلقائي
 [individualCount, adultsCount, childrenCount, daysCount].forEach(input=>input.addEventListener('input',calculatePrice));
-document.addEventListener('input',e=>{if(e.target.classList.contains('childAge')) calculatePrice();});
+document.addEventListener('input', e=>{if(e.target.classList.contains('childAge')) calculatePrice();});
 calculatePrice();
 
 // إرسال الفورم
@@ -239,7 +242,7 @@ form.addEventListener('submit', function(e){
     .then(response=>{
         if(response.ok){
             thankyouMsg.style.display='block';
-            setTimeout(()=>{window.location.href='index.html';},2000);
+            setTimeout(()=>{window.location.href='index.html';},2500);
             form.reset();
         } else {alert('Problem submitting booking. Try again.');}
     }).catch(()=>{alert('Problem submitting booking. Try again.');});
