@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Babel Camp</title>
-  <link rel="icon" href="1.1.1.jpeg">
+
+<link rel="icon" href="1.1.1.jpeg">
 <link rel="stylesheet" href="index.css">
 </head>
 
@@ -38,33 +39,48 @@
 
 <section class="container" id="activities">
   <h2>Activities</h2>
+
   <div class="gallery-container">
-    <button class="arrow left" onclick="prevImage()">❮</button>
+    <button class="arrow" onclick="prevImage()">❮</button>
+
     <div class="gallery">
       <img id="img1" class="side" src="1.jpeg" alt="Activity 1">
       <img id="img2" class="center" src="3.jpeg" alt="Activity 2">
       <img id="img3" class="side" src="4.jpeg" alt="Activity 3">
     </div>
-    <button class="arrow right" onclick="nextImage()">❯</button>
+
+    <button class="arrow" onclick="nextImage()">❯</button>
   </div>
 </section>
 
 <section class="container" id="booking">
-  <button id="bookBtn" onclick="window.location.href='booking.html'">Book Now</button>
+  <button id="bookBtn" onclick="window.location.href='booking.html'">
+    Book Now
+  </button>
 </section>
 
 <footer>
   <div class="footer-links">
-   <a href="https://www.facebook.com/profile.php?id=61586914651667" target="_blank" ><img src="Fa.png" alt="facebook"></a>
-    <a href="https://api.whatsapp.com/send/?phone=201288452212" target="_blank" ><img src="W.png" alt="Whatsapp"></a>
-    <a href="https://www.instagram.com/bubblecamp3?igsh=b2F6YTZ6ZzM4dWFj" target="_blank" ><img src="ins.png" alt="Instagram"></a>
-    <a href="mailto:babalcamp@gmail.com" target="_blank" ><img src="M.png" alt="Email"></a>
-    
+    <a href="https://www.facebook.com/profile.php?id=61586914651667" target="_blank">
+      <img src="Fa.png" alt="facebook">
+    </a>
+
+    <a href="https://api.whatsapp.com/send/?phone=201288452212" target="_blank">
+      <img src="W.png" alt="Whatsapp">
+    </a>
+
+    <a href="https://www.instagram.com/bubblecamp3?igsh=b2F6YTZ6ZzM4dWFj" target="_blank">
+      <img src="ins.png" alt="Instagram">
+    </a>
+
+    <a href="mailto:babalcamp@gmail.com">
+      <img src="M.png" alt="Email">
+    </a>
   </div>
+
   <p>© 2026 Babel Camp</p>
 </footer>
 
 <script src="index.js"></script>
 </body>
 </html>
-
